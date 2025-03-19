@@ -52,8 +52,11 @@ const resetGame=()=>{
 };
 
 //third
-const showWinner =()=>{
-  msg.innerHTML = `<p class="msg"> Congratulations, Winner is <span> ${winner} </span> </p>`;
+const showWinner =(winner)=>{
+  let color = (winner==="X")?"red":"black";
+  msg.innerHTML = `<p class="msg"> Congratulations, Winner is <span style="color:${color};
+  font-weight: bold;
+  font-size:30px;"> ${winner} </span> </p>`;
   msgContainer.classList.remove("hide");
   disableButtons();
 };
