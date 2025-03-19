@@ -3,7 +3,6 @@ let resetButton = document.querySelector("#reset");
 let newBtn = document.querySelector("#new-btn");
 let count = 0;
 
-
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector(".msg");
 
@@ -26,6 +25,7 @@ const winPatterns=[
 ];
 
 
+
 //fourth
 const disableButtons=()=>{
   for(let button of buttons){
@@ -45,6 +45,7 @@ const enableButtons=()=>{
 
 //fifth
 const resetGame=()=>{
+  count=0;
   turnO = true;
   enableButtons();
   msgContainer.classList.add("hide");
@@ -60,23 +61,25 @@ const showWinner =()=>{
 
 
 //second
-const checkWinner=()=>{
+const checkWinner=(count)=>{
   for(let pattern of winPatterns)
-  {
-    let pos1Val = buttons[pattern[0]].innerText;
-    let pos2Val = buttons[pattern[1]].innerText;
-    let pos3Val = buttons[pattern[2]].innerText;
-
-    if(pos1Val != "" && pos2Val != "" && pos3Val != "")
     {
-      if(pos1Val === pos2Val && pos2Val === pos3Val)
+      let pos1Val = buttons[pattern[0]].innerText;
+      let pos2Val = buttons[pattern[1]].innerText;
+      let pos3Val = buttons[pattern[2]].innerText;
+  
+      if(pos1Val != "" && pos2Val != "" && pos3Val != "")
       {
-        winner=pos1Val;
-        showWinner(winner);
+        if(pos1Val === pos2Val && pos2Val === pos3Val)
+        {
+          winner=pos1Val;
+          showWinner(winner);
+          return;
+        }
       }
     }
-  }
-  if(count>=9)
+  
+    if(count>=9)
     {
     msg.innerHTML = `<p class="msg">It's a Tie! Play Again.</p>`;
     msgContainer.classList.remove("hide");
@@ -99,9 +102,9 @@ buttons.forEach((button)=>{
       turnO=true;
     }
     button.disabled=true;
-
-    checkWinner();
-  })
+    count++;
+    checkWinner(count);    
+  });
 
 });
 
