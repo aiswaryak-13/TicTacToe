@@ -90,10 +90,12 @@ buttons.forEach((button)=>{
     if(turnO)
     {
       button.innerText="O";
+      button.style.color="black"
       turnO=false;
     }else
     {
       button.innerText="X";
+      button.style.color="red"
       turnO=true;
     }
     button.disabled=true;
