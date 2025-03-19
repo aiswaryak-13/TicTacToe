@@ -1,6 +1,7 @@
 let buttons = document.querySelectorAll(".btn");
 let resetButton = document.querySelector("#reset");
 let newBtn = document.querySelector("#new-btn");
+let count = 0;
 
 
 let msgContainer = document.querySelector(".msg-container");
@@ -75,6 +76,11 @@ const checkWinner=()=>{
       }
     }
   }
+  if(count>=9)
+    {
+    msg.innerHTML = `<p class="msg">It's a Tie! Play Again.</p>`;
+    msgContainer.classList.remove("hide");
+    }
 }
 
 //first
